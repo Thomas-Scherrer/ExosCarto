@@ -1,1 +1,1 @@
-# scherrerthomas.github.io
+# https://thomas-scherrer.github.io/ExosCarto/
