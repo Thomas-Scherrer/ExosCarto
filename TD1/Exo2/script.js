@@ -14,7 +14,10 @@ function currentPosition(position) {
     position.coords.speed +
     "<br>";
   infopos += "Voici le timestamp actuel: " + position.timestamp;
-  infopos += "qui correspond à la date du jour: " + new Date(position.timestamp) + "<br>";
+  infopos +=
+    "qui correspond à la date du jour: " +
+    new Date(position.timestamp) +
+    "<br>";
   document.getElementById("infoposition").innerHTML = infopos;
 }
 
@@ -34,7 +37,10 @@ function surveillePosition(position) {
     position.coords.speed +
     "<br>";
   infopos += "Voici le timestamp actuel: " + position.timestamp;
-  infopos += "qui correspond à la date du jour: " + new Date(position.timestamp) + "<br>";
+  infopos +=
+    "qui correspond à la date du jour: " +
+    new Date(position.timestamp) +
+    "<br>";
   document.getElementById("surveilleposition").innerHTML = infopos;
 }
 
