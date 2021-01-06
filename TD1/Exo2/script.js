@@ -13,7 +13,8 @@ function currentPosition(position) {
     "Et une vitesse de déplacement de la position égale à " +
     position.coords.speed +
     "<br>";
-  infopos += "Voici le timestamp actuel: " + position.timestamp + "<br>";
+  infopos += "Voici le timestamp actuel: " + position.timestamp;
+  infopos += "qui correspond à la date du jour: " + new Date(position.timestamp) + "<br>";
   document.getElementById("infoposition").innerHTML = infopos;
 }
 
@@ -32,7 +33,8 @@ function surveillePosition(position) {
     "Et une vitesse de déplacement de la position égale à " +
     position.coords.speed +
     "<br>";
-  infopos += "Voici le timestamp actuel: " + position.timestamp + "<br>";
+  infopos += "Voici le timestamp actuel: " + position.timestamp;
+  infopos += "qui correspond à la date du jour: " + new Date(position.timestamp) + "<br>";
   document.getElementById("surveilleposition").innerHTML = infopos;
 }
 
