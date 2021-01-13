@@ -15,7 +15,7 @@ function currentPosition(position) {
     "<br>";
   infopos += "Voici le timestamp actuel: " + position.timestamp;
   infopos +=
-    "qui correspond à la date du jour: " +
+    " qui correspond à la date du jour: " +
     new Date(position.timestamp) +
     "<br>";
   document.getElementById("infoposition").innerHTML = infopos;
