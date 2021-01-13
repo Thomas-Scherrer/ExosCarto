@@ -7,7 +7,6 @@ if (navigator.geolocation)
     longitude = position.coords.longitude;
     var mymap = L.map("mapid").setView([latitude, longitude], 12);
 
-    // Création de l'image
     L.tileLayer(
       "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
       {
