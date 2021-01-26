@@ -1,9 +1,14 @@
+var options = {
+  enableHighAccuracy: true,
+};
+
 var mymap = L.map("mapid").setView([25, -80], 4);
 
 L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}", {
   foo: "bar",
 }).addTo(mymap);
 
+// Triangle des Bermudes
 var polygon = L.polygon([
   [25.5322, -80.2726],
   [33.06, -64.77],
@@ -22,4 +27,32 @@ var circle = L.circle([26.2, -70.66], {
   radius: 960000,
 }).addTo(mymap);
 
-var dist = 2*coords.accuracy*Math.asin(Math.sqrt(Math.pow(Math.sin((coords.latitude-marseilleLat)/2), 2)+Math.cos(marseilleLat)*Math.cos(coords.latitude)*Math.pow(Math.sin((coords.longitude-marseilleLon)/2), 2)));
+
+// Distance triangle des Bermudes - Marseille
+var latCentreBermudes = 27.13;
+var longCentreBermudes = -68.91;
+
+var latMarseille = 43.29;
+var longMarseille = 5.36;
+
+function getDistance(lat1,lng1,lat2,lng2) {
+  // Radius de la Terre
+  var R = 6371; 
+  var dLat = degToRad(lat2-lat1); 
+  var dLon = degToRad(lng2-lng1); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(degToRad(lat1)) * Math.cos(degToRad(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  // Distance en km
+  var d = R * c; 
+  return d;
+}
+
+function degToRad(deg) {
+  return (deg * Math.PI)/180
+}
+
+document.getElementById('distance').textContent = getDistance(latCentreBermudes, longCentreBermudes, latMarseille, longMarseille);
