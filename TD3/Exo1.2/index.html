@@ -7,8 +7,28 @@
   </head>
   <body onload="draw();">
     <h1>Exercice 1.2 : Dessiner avec un SVG</h1>
-    <canvas id="canvas" width="1246" height="333">
-    </canvas>
+    <svg width="800" height="600">
+        <!-- Prairie -->
+        <rect width="500" height="280" fill="green" />
+        <!-- Ciel -->
+        <rect width="500" height="180" fill="#0080ff" opacity="1" />
+        <!-- Montagnes -->
+        <polygon points="80,30 20,180 100,180" style="fill:rgb(255, 102, 0);stroke:purple;stroke-width:1" />
+        <polygon points="130,30 70,180 150,180" style="fill:rgb(255, 102, 0);stroke:purple;stroke-width:1" />
+        <polygon points="180,30 120,180 200,180" style="fill:rgb(255, 102, 0);stroke:purple;stroke-width:1" />
+        <polygon points="230,30 170,180 250,180" style="fill:rgb(255, 102, 0);stroke:purple;stroke-width:1" />
+        <polygon points="280,30 220,180 300,180" style="fill:rgb(255, 102, 0);stroke:purple;stroke-width:1" />
+        <polygon points="300,30 240,180 320,180" style="fill:rgb(255, 102, 0);stroke:purple;stroke-width:1" />
+        <polygon points="350,30 290,180 370,180" style="fill:rgb(255, 102, 0);stroke:purple;stroke-width:1" />
+        <!-- Soleil -->
+        <ellipse cx="400" cy="80" rx="70" ry="50" fill="yellow" />
+        <!-- Toit maison -->
+        <polygon points="80,120 40,180 120,180" style="fill:rgb(255, 0, 0);" />
+        <!-- Maison -->
+        <polygon points="120,180 120,260 40,260 40,180" style="fill:#cf800a;stroke:#5e2805;stroke-width:1" />
+        <!-- Porte -->
+        <polygon points="80,230 80,260 60,260 60,230" style="fill:#5e2805;stroke:hsl(0, 91%, 43%);stroke-width:1" />
+    </svg> 
   </body>
   <script type="text/javascript" src="script.js"></script>
 </html>
