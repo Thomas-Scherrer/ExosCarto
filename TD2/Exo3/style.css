@@ -1,0 +1,8 @@
+html, body {
+    height: 100%;
+	padding: 0;
+}
+#mapid {
+    margin: 10px;
+    height: 380px;
+}

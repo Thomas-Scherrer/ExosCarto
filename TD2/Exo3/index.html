@@ -3,13 +3,143 @@
   <head>
     <meta charset="utf-8" />
     <title>Exercice 3</title>
+    <link href="style.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
   </head>
   <body>
+    <h1>Exercice 3</h1>
+    <h2>Géolocalisation des communes par départements</h2>
+    <select name="list" id="list">
+      <option value="0" selected>Departements</option>
+      <option value="01">Ain</option>
+      <option value="02">Aisne</option>
+      <option value="03">Allier</option>
+      <option value="04">Alpes-de-Haute-Provence</option>
+      <option value="05">Hautes-alpes</option>
+      <option value="06">Alpes-maritimes</option>
+      <option value="07">Ardèche</option>
+      <option value="08">Ardennes</option>
+      <option value="09">Ariège</option>
+      <option value="10">Aube</option>
+      <option value="11">Aude</option>
+      <option value="12">Aveyron</option>
+      <option value="13">Bouches-du-Rhône</option>
+      <option value="14">Calvados</option>
+      <option value="15">Cantal</option>
+      <option value="16">Charente</option>
+      <option value="17">Charente-maritime</option>
+      <option value="18">Cher</option>
+      <option value="19">Corrèze</option>
+      <option value="2A">Corse-du-sud</option>
+      <option value="2B">Haute-Corse</option>
+      <option value="21">Côte-d'Or</option>
+      <option value="22">Côtes-d'Armor</option>
+      <option value="23">Creuse</option>
+      <option value="24">Dordogne</option>
+      <option value="25">Doubs</option>
+      <option value="26">Drôme</option>
+      <option value="27">Eure</option>
+      <option value="28">Eure-et-loir</option>
+      <option value="29">Finistère</option>
+      <option value="30">Gard</option>
+      <option value="31">Haute-garonne</option>
+      <option value="32">Gers</option>
+      <option value="33">Gironde</option>
+      <option value="34">Hérault</option>
+      <option value="35">Ille-et-vilaine</option>
+      <option value="36">Indre</option>
+      <option value="37">Indre-et-loire</option>
+      <option value="38">Isère</option>
+      <option value="39">Jura</option>
+      <option value="40">Landes</option>
+      <option value="41">Loir-et-cher</option>
+      <option value="42">Loire</option>
+      <option value="43">Haute-loire</option>
+      <option value="44">Loire-atlantique</option>
+      <option value="45">Loiret</option>
+      <option value="46">Lot</option>
+      <option value="47">Lot-et-garonne</option>
+      <option value="48">Lozère</option>
+      <option value="49">Maine-et-loire</option>
+      <option value="50">Manche</option>
+      <option value="51">Marne</option>
+      <option value="52">Haute-marne</option>
+      <option value="53">Mayenne</option>
+      <option value="54">Meurthe-et-moselle</option>
+      <option value="55">Meuse</option>
+      <option value="56">Morbihan</option>
+      <option value="57">Moselle</option>
+      <option value="58">Nièvre</option>
+      <option value="59">Nord</option>
+      <option value="60">Oise</option>
+      <option value="61">Orne</option>
+      <option value="62">Pas-de-calais</option>
+      <option value="63">Puy-de-dôme</option>
+      <option value="64">Pyrénées-atlantiques</option>
+      <option value="65">Hautes-Pyrénées</option>
+      <option value="66">Pyrénées-orientales</option>
+      <option value="67">Bas-rhin</option>
+      <option value="68">Haut-rhin</option>
+      <option value="69">Lyon</option>
+      <option value="70">Haute-saône</option>
+      <option value="71">Saône-et-loire</option>
+      <option value="72">Sarthe</option>
+      <option value="73">Savoie</option>
+      <option value="74">Haute-savoie</option>
+      <option value="75">Paris</option>
+      <option value="76">Seine-maritime</option>
+      <option value="77">Seine-et-marne</option>
+      <option value="78">Yvelines</option>
+      <option value="79">Deux-sèvres</option>
+      <option value="80">Somme</option>
+      <option value="81">Tarn</option>
+      <option value="82">Tarn-et-Garonne</option>
+      <option value="83">Var</option>
+      <option value="84">Vaucluse</option>
+      <option value="85">Vendée</option>
+      <option value="86">Vienne</option>
+      <option value="87">Haute-vienne</option>
+      <option value="88">Vosges</option>
+      <option value="89">Yonne</option>
+      <option value="90">Territoire de Belfort</option>
+      <option value="91">Essonne</option>
+      <option value="92">Hauts-de-seine</option>
+      <option value="93">Seine-Saint-Denis</option>
+      <option value="94">Val-de-marne</option>
+      <option value="95">Val-d'Oise</option>
+      <option value="971">Guadeloupe</option>
+      <option value="972">Martinique</option>
+      <option value="973">Guyane</option>
+      <option value="974">La Réunion</option>
+      <option value="976">Mayotte</option>
+    </select>
+
+    <div id="mapid"></div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
+
+    <script
+      type="text/javascript"
+      src=" https://stamen-maps.a.ssl.fastly.net/js/tile.stamen.js"
+    ></script>
+
+    <script src="script.js"></script>
+
+    <script>
+      document.querySelector("#list").addEventListener("change", function (e) {
+        if (e.target.value != "0") {
+          fetchDpts(e.target.value);
+        }
+      });
+    </script>
   </body>
-  <script
-    src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin=""
-  ></script>
-  <script src="script.js"></script>
 </html>
