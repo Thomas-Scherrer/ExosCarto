@@ -10,5 +10,6 @@
 ### https://thomas-scherrer.github.io/ExosCarto/TD2/Exo3/
 
 ## TD3
-### https://thomas-scherrer.github.io/ExosCarto/TD3/Exo1/
+### https://thomas-scherrer.github.io/ExosCarto/TD3/Exo1.1/
+### https://thomas-scherrer.github.io/ExosCarto/TD3/Exo1.2/
 ### https://thomas-scherrer.github.io/ExosCarto/TD3/Exo2/
