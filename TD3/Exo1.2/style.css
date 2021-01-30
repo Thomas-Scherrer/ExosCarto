@@ -1,4 +1,22 @@
 html, body {
     height: 100%;
-	padding: 0;
+    padding: 0;
+    margin: auto;
+}
+
+/* Couleur de la porte */
+polygon#door {
+    fill:#5e2805;
+    stroke:hsl(0, 91%, 43%);
+    stroke-width:1
+}
+
+/* Changement de couleur de la porte au hover */
+polygon#door:hover {
+    fill: blue;
+}
+
+/* Couleur du ciel */
+rect#sky {
+    fill: #0080ff;
 }
