@@ -81,7 +81,7 @@ scene.add(sphere);
 sphere.position.set(1, -1, 0);
 
 // position de la caméra
-camera.position.z = 100;
+camera.position.z = 8;
 //camera.lookAt(particules);
 
 renderer.setSize(window.innerWidth, window.innerHeight);
