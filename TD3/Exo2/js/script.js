@@ -14,8 +14,38 @@ const camera = new THREE.PerspectiveCamera(
 // renderer
 const renderer = new THREE.WebGLRenderer();
 
-// controls
-const controls = new THREE.OrbitControls( camera, renderer.domElement );
+// orbit controls
+const orbitControls = new THREE.OrbitControls( camera, renderer.domElement );
+
+// deviceOrientation controls
+const deviceOrientationControls = new THREE.DeviceOrientationControls( camera );
+
+window.addEventListener('devicemotion', function(event) {
+  console.log('Device Motion alpha :' + event.rotationRate.alpha);
+  console.log('Device Motion beta :' + event.rotationRate.beta);
+  console.log('Device Motion gamma :' + event.rotationRate.gamma);
+});
+
+if (window.DeviceOrientationEvent) {
+  window.addEventListener("deviceorientation", function (event) {
+    var rotateDegrees = event.alpha;
+    var frontToBack = event.beta;
+    var leftToRight = event.gamma;
+
+    handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
+  }, true);
+}
+
+var handleOrientationEvent = function (rotateDegrees, frontToBack, leftToRight) {
+  console.log('Device Orientation alpha :' + rotateDegrees);  
+  console.log('Device Orientation beta :' + frontToBack); 
+  console.log('Device Orientation gamma :' + leftToRight);
+};
+
+window.addEventListener("compassneedscalibration", function(event) {
+  alert('Your compass needs calibrating! Wave your device in a figure-eight motion');
+  event.preventDefault();
+}, true);
 
 // geometry
 const geometry = new THREE.SphereGeometry( 1, 32, 32 );
@@ -62,7 +92,7 @@ gltfLoader.load(
   }
 );
 
-// White directional light at half intensity shining from the top.
+// White directional light shining from the top
 const directionalLight = new THREE.DirectionalLight( 0xffffff, 4 );
 scene.add( directionalLight );
 
