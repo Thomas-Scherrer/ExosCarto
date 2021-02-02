@@ -11,6 +11,23 @@ const camera = new THREE.PerspectiveCamera(
   1000
 );
 
+// particules
+/*var particules = new THREE.Particle( new THREE.ParticleCanvasMaterial({
+  color: 0xFF0000,
+  opacity: 1,
+  program: function(context){
+    context.beginPath();
+    context.arc(0,0,1,0,Math.PI * 2, true);
+    context.closePath();
+    context.fill();
+  }
+}));
+particules.position.x = 0;
+particules.position.y = 0;
+particules.position.z = 0;
+particules.scale.x = particules.scale.y = 100;
+scene.add(particules); */
+
 // renderer
 const renderer = new THREE.WebGLRenderer();
 
@@ -64,7 +81,8 @@ scene.add(sphere);
 sphere.position.set(1, -1, 0);
 
 // position de la caméra
-camera.position.z = 5;
+camera.position.z = 100;
+//camera.lookAt(particules);
 
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
