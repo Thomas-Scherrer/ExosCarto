@@ -1,0 +1,44 @@
+body {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+#canvas { 
+    border: 1px solid black; 
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#imgBoussole {
+    max-height: 333px;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+}
+
+#imgAiguille {
+    max-height: 333px;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+}
+/* #imgBoussole {
+    display: block;
+    margin: calc(((204px * 1.4142) - 204px) / 2);
+    animation: example 12s linear 0s infinite;
+}
+
+#imgBoussole:hover{
+    animation-play-state: paused;
+}
+
+@keyframes example {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+} */
