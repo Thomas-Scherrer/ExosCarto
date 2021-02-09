@@ -6,15 +6,16 @@
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" type="image/png" href="images/exam.png" />
   </head>
-  <body onload="draw();">
+  <body onload="draw1(); draw2();">
     <h1>Mini-Projet</h1>
     <h2>Boussole avec HTML Canvas</h2>
-    <canvas id="canvas" width="800" height="300"></canvas>
+    <canvas id="canvas1" width="800" height="300"></canvas>
     <img id="imgBoussole" src="./images/compass.png"/>
     <img id="imgAiguille" src="./images/needle.png"/>
     <script type="text/javascript" src="js/script.js"></script>
     
     <h2>Boussole avec SVG</h2>
+    <canvas id="canvas2" width="800" height="300"></canvas>
     <script src="js/three.js"></script>
     <script src="https://threejs.org//examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://threejs.org//examples/js/controls/DeviceOrientationControls.js"></script>
