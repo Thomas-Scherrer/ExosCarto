@@ -3,8 +3,13 @@ body {
     margin-right: auto;
 }
 
-h1, h2 {
+h1, h2, h3 {
     text-align: center;
+}
+
+.geoloc{
+    text-align: center;
+    list-style: none;
 }
 
 #canvas1, #canvas2 { 

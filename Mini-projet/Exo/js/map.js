@@ -1,18 +1,66 @@
-/* 
- * Leaflet Control Compass v1.5.3 - 2018-11-23 
- * 
- * Copyright 2014 Stefano Cudini 
- * stefano.cudini@gmail.com 
- * http://labs.easyblog.it/ 
- * 
- * Licensed under the MIT license. 
- * 
- * Demos: 
- * http://labs.easyblog.it/maps/leaflet-compass/ 
- * 
- * Source: 
- * git@github.com:stefanocudini/leaflet-compass.git 
- * 
+var container = false;
+
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+function success(pos) {
+  var coords = pos.coords;
+
+  document.getElementById("lat").innerHTML = 'Latitude : '+coords.latitude;
+  document.getElementById("lon").innerHTML = 'Longitude : '+coords.longitude;
+
+  if (!container){
+
+    // MAP LEAFLET
+    var map = L.map('mapid').setView([coords.latitude, coords.longitude], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Cercle myPosition
+    L.circle([coords.latitude, coords.longitude], {
+      color: 'red',
+      fillColor: '#f03',
+      fillOpacity: 0.5,
+      radius: coords.accuracy
+    }).addTo(map);
+
+    L.marker([coords.latitude, coords.longitude]).addTo(map).bindPopup('My Position').openPopup();
+
+    map.addControl( new L.Control.Compass() );
+
+    container = true;
+    window.requestAnimationFrame(success);
+  }
+}
+
+window.requestAnimationFrame(success);
+
+function error(err) {
+  console.warn('ERREUR ('+err.code+'): '+err.message);
+}
+
+navigator.geolocation.watchPosition(success, error, options);
+
+/*
+ * Leaflet Control Compass v1.5.3 - 2018-11-23
+ *
+ * Copyright 2014 Stefano Cudini
+ * stefano.cudini@gmail.com
+ * http://labs.easyblog.it/
+ *
+ * Licensed under the MIT license.
+ *
+ * Demos:
+ * http://labs.easyblog.it/maps/leaflet-compass/
+ *
+ * Source:
+ * git@github.com:stefanocudini/leaflet-compass.git
+ *
  */
 (function (factory) {
     if(typeof define === 'function' && define.amd) {
@@ -59,7 +107,7 @@ L.Control.Compass = L.Control.extend({
 
 	initialize: function(options) {
 		if(options && options.style)
-			options.style = L.Util.extend({}, this.options.style, options.style); 
+			options.style = L.Util.extend({}, this.options.style, options.style);
 		L.Util.setOptions(this, options);
 		this._errorFunc = this.options.callErr || this.showAlert;
 		this._isActive = false;//global state of compass
@@ -70,8 +118,8 @@ L.Control.Compass = L.Control.extend({
 
 		var self = this;
 
-		this._map = map;	
-			
+		this._map = map;
+
 		var container = L.DomUtil.create('div', 'leaflet-compass');
 
 		this._button = L.DomUtil.create('span', 'compass-button', container);
@@ -98,9 +146,9 @@ L.Control.Compass = L.Control.extend({
 	},
 
 	onRemove: function(map) {
-		
+
 		this.deactivate();
-		
+
 		L.DomEvent
 			.off(this._button, 'click', L.DomEvent.stop, this)
 			.off(this._button, 'click', this._switchCompass, this);
@@ -127,7 +175,7 @@ L.Control.Compass = L.Control.extend({
 		else {
 			this._errorCompass({message: 'Orientation angle not found'});
 		}
-		
+
 		angle = Math.round(angle);
 
 		if(angle % this.options.angleOffset === 0)
@@ -146,16 +194,16 @@ L.Control.Compass = L.Control.extend({
 	},
 
 	setAngle: function(angle) {
-		
+
 		if(this.options.showDigit && !isNaN(parseFloat(angle)) && isFinite(angle))
-			this._digit.innerHTML = angle+'°';
+			this._digit.innerHTML = angle+'Â°';
 
 		this._currentAngle = angle;
 		this._rotateElement( this._icon );
 
 		this.fire('compass:rotated', {angle: angle});
 	},
-	
+
 	getAngle: function() {	//get last angle
 		return this._currentAngle;
 	},
@@ -165,12 +213,12 @@ L.Control.Compass = L.Control.extend({
 		this._isActive = true;
 
 		L.DomEvent.on(window, 'deviceorientation', this._rotateHandler, this);
-		
+
 		L.DomUtil.addClass(this._button, 'active');
 	},
 
 	deactivate: function() {
-		
+
 		this.setAngle(0);
 
 		this._isActive = false;
