@@ -1,50 +1,48 @@
-var container = false;
+navigator.geolocation.getCurrentPosition(success, error);
+window.addEventListener("deviceorientation", deviceOrientation, true);
 
-var options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0
-};
+var long;
+var lat;
+var precision;
+var myPosition = {}
+var compass = new L.Control.Compass()
 
 function success(pos) {
-  var coords = pos.coords;
+    
+    long = pos.coords.longitude
+    lat = pos.coords.latitude
+    precision = pos.coords.accuracy
 
-  document.getElementById("lat").innerHTML = 'Latitude : '+coords.latitude;
-  document.getElementById("lon").innerHTML = 'Longitude : '+coords.longitude;
+    myPosition.lat = lat
+    myPosition.long = long
 
-  if (!container){
-
-    // MAP LEAFLET
-    var map = L.map('mapid').setView([coords.latitude, coords.longitude], 13);
+    var map = L.map('mapid').setView([lat, long], 5);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Cercle myPosition
-    L.circle([coords.latitude, coords.longitude], {
-      color: 'red',
-      fillColor: '#f03',
-      fillOpacity: 0.5,
-      radius: coords.accuracy
+
+    map.addControl(compass);
+
+    // Cercle autour de ma position
+    var circle = L.circle([lat, long], {
+        color: 'red',
+        fillColor: 'blue',
+        fillOpacity: 0.5,
+        radius: precision
     }).addTo(map);
 
-    L.marker([coords.latitude, coords.longitude]).addTo(map).bindPopup('My Position').openPopup();
-
-    map.addControl( new L.Control.Compass() );
-
-    container = true;
-    window.requestAnimationFrame(success);
-  }
 }
 
-window.requestAnimationFrame(success);
-
-function error(err) {
-  console.warn('ERREUR ('+err.code+'): '+err.message);
+function error() {
+    console.log("Vous n'avez pas autorisé la géolocalisation")
 }
 
-navigator.geolocation.watchPosition(success, error, options);
+
+function deviceOrientation(event) {
+    compass.setAngle(event.alpha)
+}
 
 /*
  * Leaflet Control Compass v1.5.3 - 2018-11-23

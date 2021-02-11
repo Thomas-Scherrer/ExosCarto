@@ -33,17 +33,8 @@ h1, h2, h3 {
     margin-right: auto;
     display: none;
 }
-/* #imgBoussole {
-    display: block;
-    margin: calc(((204px * 1.4142) - 204px) / 2);
-    animation: example 12s linear 0s infinite;
-}
 
-#imgBoussole:hover{
-    animation-play-state: paused;
+/* Leaflet */
+#mapid {
+    height: 700px;
 }
-
-@keyframes example {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-} */
