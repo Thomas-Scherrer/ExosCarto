@@ -12,7 +12,7 @@ h1, h2, h3 {
     list-style: none;
 }
 
-#canvas1, #canvas2 { 
+#canvas { 
     border: 1px solid black; 
     display: block;
     margin-top: 10px;
