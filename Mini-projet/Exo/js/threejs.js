@@ -7,7 +7,7 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
 const geometry = new THREE.ConeGeometry( 5, 20, 32 );
-const texture = new THREE.TextureLoader().load( '../images/earth-map.png' );
+const texture = new THREE.TextureLoader().load('../images/earth-map.png');
 const materialTex = new THREE.MeshBasicMaterial( { map: texture } );
 const cone = new THREE.Mesh( geometry, materialTex );
 const directionalLight = new THREE.DirectionalLight( 0xffffff, 100 );
